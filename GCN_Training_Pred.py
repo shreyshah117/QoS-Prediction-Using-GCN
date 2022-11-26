@@ -115,3 +115,21 @@ for i in range(339):
             count +=1
             
 print('Error = {0:.3f}'.format(ae/count))
+
+
+
+###prediction
+
+rt_pred = model(input_f, training=False)
+rt_pred = rt_pred.numpy()
+
+count = 0
+ae=0
+
+for i in range(339):
+    for j in range(5825):
+        if rtdata_O[i][j]!=0 and rtdata_10[i][j]==0:
+            ae += np.abs(rt_pred[i][j]-rtdata_O[i][j])
+            count +=1
+            
+print('error {.3f}', ae/count)
